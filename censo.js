@@ -791,8 +791,12 @@ function renderStats() {
   const totalCasas = casas.length;
   const total = personas.length;
 
+  const nombreSectorActivo = statsSector
+    ? sectoresCenso.find((s) => String(s.id) === statsSector)?.nombre || ""
+    : "";
+
   const selector = `
-    <div class="censo-filtros">
+    <div class="censo-filtros no-imprimir">
       <select id="stats-filtro-sector">
         <option value="">📊 Todos los sectores</option>
         ${sectoresCenso
@@ -804,8 +808,15 @@ function renderStats() {
       </select>
     </div>`;
 
+  const encabezadoImpresion = `
+    <div class="stats-print-header">
+      <h1>Parroquia "El Buen Pastor" · Arquidiócesis de Maracaibo</h1>
+      <p>Estadísticas de la Misión${nombreSectorActivo ? ` · Sector: ${esc(nombreSectorActivo)}` : " · Todos los sectores"}</p>
+      <p>Generado el ${new Date().toLocaleDateString("es-VE", { day: "numeric", month: "long", year: "numeric" })}</p>
+    </div>`;
+
   if (!total && !totalCasas) {
-    cont.innerHTML = `${selector}<div class="card vacio-card">Aún no hay datos del censo${
+    cont.innerHTML = `${selector}${encabezadoImpresion}<div class="card vacio-card">Aún no hay datos del censo${
       statsSector ? " en este sector" : ""
     }.<br>Las estadísticas aparecerán cuando se registren las primeras casas.</div>`;
     return;
@@ -852,12 +863,9 @@ function renderStats() {
   );
   const nombresSectores = Object.keys(porSector);
 
-  const nombreSectorActivo = statsSector
-    ? sectoresCenso.find((s) => String(s.id) === statsSector)?.nombre || ""
-    : "";
-
   cont.innerHTML = `
     ${selector}
+    ${encabezadoImpresion}
     <div class="card dia-encabezado">
       <h2>📊 Estadísticas${nombreSectorActivo ? ` · ${esc(nombreSectorActivo)}` : " de la misión"}</h2>
       <p class="dia-titulo">${total} persona${total !== 1 ? "s" : ""} censada${total !== 1 ? "s" : ""} · ${totalCasas} casa${totalCasas !== 1 ? "s" : ""} visitada${totalCasas !== 1 ? "s" : ""}</p>
@@ -920,7 +928,10 @@ function renderStats() {
       <p class="mini-dia">La vista clave para organizar el seguimiento de la parroquia después de la misión.</p>
     </div>
 
-    <button class="btn-secundario btn-actualizar" data-accion="actualizar-stats">🔄 Actualizar</button>`;
+    <div class="stats-botones no-imprimir">
+      <button class="btn-secundario btn-actualizar" data-accion="actualizar-stats">🔄 Actualizar</button>
+      <button class="btn-principal btn-actualizar" data-accion="exportar-pdf">🖨️ Descargar PDF</button>
+    </div>`;
 }
 
 /* ---------- Sin configurar ---------- */
@@ -1016,7 +1027,9 @@ document.querySelector("#vista-censo").addEventListener("input", (ev) => {
 
 document.querySelector("#vista-stats").addEventListener("click", (ev) => {
   const el = ev.target.closest("[data-accion]");
-  if (el?.dataset.accion === "actualizar-stats") refrescarStats();
+  if (!el) return;
+  if (el.dataset.accion === "actualizar-stats") refrescarStats();
+  else if (el.dataset.accion === "exportar-pdf") window.print();
 });
 
 document.querySelector("#vista-stats").addEventListener("change", (ev) => {
