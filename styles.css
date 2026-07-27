@@ -423,6 +423,13 @@ main {
   margin-bottom: 10px;
 }
 
+.ficha-pron {
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
 .ficha-espanol {
   font-size: 0.95rem;
   color: var(--tinta);
