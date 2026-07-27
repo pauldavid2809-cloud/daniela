@@ -895,6 +895,66 @@ tbody tr:nth-child(even) {
   padding: 12px;
 }
 
+/* ---------- Stats: exportar a PDF ---------- */
+
+.stats-print-header {
+  display: none;
+}
+
+.stats-botones {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.stats-botones .btn-actualizar {
+  width: auto;
+  flex: 1;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #vista-stats,
+  #vista-stats * {
+    visibility: visible;
+  }
+  #vista-stats {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 0;
+  }
+  .no-imprimir {
+    display: none !important;
+  }
+  .stats-print-header {
+    display: block;
+    margin-bottom: 14px;
+  }
+  .stats-print-header h1 {
+    font-size: 1.1rem;
+    color: var(--marron-oscuro);
+  }
+  .stats-print-header p {
+    font-size: 0.85rem;
+    color: var(--tinta-suave);
+  }
+  .card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+  .barra-relleno,
+  .badge,
+  .fila-especial,
+  tbody tr:nth-child(even) {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
 /* ---------- Pantallas grandes ---------- */
 
 @media (min-width: 720px) {
