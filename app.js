@@ -374,16 +374,16 @@ const MISA_LATIN = [
     seccion: "Liturgia de la Palabra",
     fichas: [
       {
-        cue: "Sacerdote/Diácono: “Léctio sancti Evangélii secúndum…”",
-        latin: "Glória tibi, Dómine.",
-        pron: "Glória tibi, Dómine.",
-        espanol: "Gloria a ti, Señor.",
-      },
-      {
         cue: "Lector, tras 1ª/2ª lectura: “Verbum Dómini.”",
         latin: "Deo grátias.",
         pron: "Déo grátsias.",
         espanol: "Te alabamos, Señor.",
+      },
+      {
+        cue: "Sacerdote/Diácono: “Léctio sancti Evangélii secúndum…”",
+        latin: "Glória tibi, Dómine.",
+        pron: "Glória tibi, Dómine.",
+        espanol: "Gloria a ti, Señor.",
       },
       {
         cue: "Tras el Evangelio: “Verbum Dómini.”",
@@ -404,6 +404,12 @@ const MISA_LATIN = [
           "Sushípiat Dóminus sakrifíchium de mánibus túis ad láudem et glóriam nóminis súi, ad utilitátem kuókue nóstram totsiúskue eklésie súe sánkte.",
         espanol:
           "El Señor reciba de tus manos este sacrificio, para alabanza y gloria de su nombre, para nuestro bien y el de toda su santa Iglesia.",
+      },
+      {
+        cue: "Sacerdote: “Dóminus vobíscum.”",
+        latin: "Et cum spíritu tuo.",
+        pron: "Et cum spíritu túo.",
+        espanol: "Y con tu espíritu.",
       },
       {
         cue: "Prefacio: “Sursum corda.”",
