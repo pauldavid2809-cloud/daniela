@@ -344,23 +344,28 @@ const MISA_LATIN = [
       {
         cue: "Sacerdote: “In nómine Patris, et Fílii, et Spíritus Sancti.”",
         latin: "Amen.",
+        pron: "Ámen.",
         espanol: "Amén.",
       },
       {
         cue: "Sacerdote: “Dóminus vobíscum.”",
         latin: "Et cum spíritu tuo.",
+        pron: "Et cum spíritu túo.",
         espanol: "Y con tu espíritu.",
       },
       {
         cue: "Yo confieso (todos)",
         latin:
           "Confíteor Deo omnipoténti et vobis, fratres, quia peccávi nimis cogitatióne, verbo, ópere et omissióne: mea culpa, mea culpa, mea máxima culpa. Ideo precor beátam Maríam semper Vírginem, omnes Angelos et Sanctos, et vos, fratres, oráre pro me ad Dóminum Deum nostrum.",
+        pron:
+          "Confíteor Déo omnipoténti et vóbis, frátres, kuia pekkávi nímis koyitatsióne, vérbo, ópere et omissióne: méa culpa, méa culpa, méa máksima culpa. Idéo précor beátam Maríam sémper víryinem, ómnes ányelos et sánctos, et vos, frátres, oráre pro me ad Dóminum Déum nóstrum.",
         espanol:
           "Yo confieso ante Dios todopoderoso y ante vosotros, hermanos, que he pecado mucho de pensamiento, palabra, obra y omisión. Por mi culpa, por mi culpa, por mi gran culpa. Por eso ruego a santa María, siempre Virgen, a los ángeles, a los santos y a vosotros, hermanos, que intercedáis por mí ante Dios, nuestro Señor.",
       },
       {
         cue: "Kýrie (todos)",
         latin: "Kýrie, eléison. Christe, eléison. Kýrie, eléison.",
+        pron: "Kírie, eléison. Kríste, eléison. Kírie, eléison.",
         espanol: "Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad.",
       },
     ],
@@ -371,16 +376,19 @@ const MISA_LATIN = [
       {
         cue: "Sacerdote/Diácono: “Léctio sancti Evangélii secúndum…”",
         latin: "Glória tibi, Dómine.",
+        pron: "Glória tibi, Dómine.",
         espanol: "Gloria a ti, Señor.",
       },
       {
         cue: "Lector, tras 1ª/2ª lectura: “Verbum Dómini.”",
         latin: "Deo grátias.",
+        pron: "Déo grátsias.",
         espanol: "Te alabamos, Señor.",
       },
       {
         cue: "Tras el Evangelio: “Verbum Dómini.”",
         latin: "Laus tibi, Christe.",
+        pron: "Laus tíbi, Kríste.",
         espanol: "Gloria a ti, Señor Jesús.",
       },
     ],
@@ -392,23 +400,29 @@ const MISA_LATIN = [
         cue: "Sacerdote: “Oráte, fratres…”",
         latin:
           "Suscípiat Dóminus sacrifícium de mánibus tuis ad laudem et glóriam nóminis sui, ad utilitátem quoque nostram totiúsque Ecclésiæ suæ sanctæ.",
+        pron:
+          "Sushípiat Dóminus sakrifíchium de mánibus túis ad láudem et glóriam nóminis súi, ad utilitátem kuókue nóstram totsiúskue eklésie súe sánkte.",
         espanol:
           "El Señor reciba de tus manos este sacrificio, para alabanza y gloria de su nombre, para nuestro bien y el de toda su santa Iglesia.",
       },
       {
         cue: "Prefacio: “Sursum corda.”",
         latin: "Habémus ad Dóminum.",
+        pron: "Habémus ad Dóminum.",
         espanol: "Lo tenemos levantado hacia el Señor.",
       },
       {
         cue: "Prefacio: “Grátias agámus Dómino Deo nostro.”",
         latin: "Dignum et iustum est.",
+        pron: "Díñum et yústum est.",
         espanol: "Es justo y necesario.",
       },
       {
         cue: "Sanctus (todos)",
         latin:
           "Sanctus, Sanctus, Sanctus Dóminus Deus Sábaoth. Pleni sunt cæli et terra glória tua. Hosánna in excélsis. Benedíctus qui venit in nómine Dómini. Hosánna in excélsis.",
+        pron:
+          "Sánctus, Sánctus, Sánctus Dóminus Déus Sábaot. Pléni sunt chéli et térra glória túa. Hosánna in ekschélsis. Benedíctus kui vénit in nómine Dómini. Hosánna in ekschélsis.",
         espanol:
           "Santo, Santo, Santo es el Señor, Dios del universo. Llenos están el cielo y la tierra de tu gloria. Hosanna en el cielo. Bendito el que viene en nombre del Señor. Hosanna en el cielo.",
       },
@@ -416,12 +430,15 @@ const MISA_LATIN = [
         cue: "Sacerdote: “Mystérium fídei.”",
         latin:
           "Mortem tuam annuntiámus, Dómine, et tuam resurrectiónem confitémur, donec vénias.",
+        pron:
+          "Mórtem túam annuntsiámus, Dómine, et túam resurrektsiónem confitémur, dónec vénias.",
         espanol:
           "Anunciamos tu muerte, proclamamos tu resurrección. ¡Ven, Señor Jesús!",
       },
       {
         cue: "Gran Amén, al final de la Plegaria Eucarística",
         latin: "Amen.",
+        pron: "Ámen.",
         espanol: "Amén.",
       },
     ],
@@ -433,23 +450,29 @@ const MISA_LATIN = [
         cue: "Padre Nuestro (todos)",
         latin:
           "Pater noster, qui es in cælis: sanctificétur nomen tuum; advéniat regnum tuum; fiat volúntas tua, sicut in cælo, et in terra. Panem nostrum cotidiánum da nobis hódie; et dimítte nobis débita nostra, sicut et nos dimíttimus debitóribus nostris; et ne nos indúcas in tentatiónem; sed líbera nos a malo.",
+        pron:
+          "Páter nóster, kui es in chélis: sanktifichétur nómen túum; advéniat réñum túum; fíat volúntas túa, sikút in chélo, et in térra. Pánem nóstrum kotidiánum da nóbis hódie; et dimítte nóbis débita nóstra, sikút et nos dimíttimus debitóribus nóstris; et ne nos indúkas in tentatsiónem; sed líbera nos a málo.",
         espanol:
           "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal.",
       },
       {
         cue: "Sacerdote: “…exspectántes beátam spem et advéntum Salvatóris nostri Iesu Christi.”",
         latin: "Quia tuum est regnum, et potéstas, et glória in sæcula.",
+        pron: "Kuia túum est réñum, et potéstas, et glória in sékula.",
         espanol: "Tuyo es el reino, tuyo el poder y la gloria, por siempre, Señor.",
       },
       {
         cue: "Rito de la paz: “Pax Dómini sit semper vobíscum.”",
         latin: "Et cum spíritu tuo.",
+        pron: "Et cum spíritu túo.",
         espanol: "Y con tu espíritu.",
       },
       {
         cue: "Agnus Dei (todos)",
         latin:
           "Agnus Dei, qui tollis peccáta mundi: miserére nobis. Agnus Dei, qui tollis peccáta mundi: miserére nobis. Agnus Dei, qui tollis peccáta mundi: dona nobis pacem.",
+        pron:
+          "Áñus Déi, kui tóllis pekkáta múndi: miserére nóbis. Áñus Déi, kui tóllis pekkáta múndi: miserére nóbis. Áñus Déi, kui tóllis pekkáta múndi: dóna nóbis páchem.",
         espanol:
           "Cordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros. Cordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros. Cordero de Dios, que quitas el pecado del mundo, danos la paz.",
       },
@@ -457,12 +480,15 @@ const MISA_LATIN = [
         cue: "Antes de comulgar: “Ecce Agnus Dei… Beáti qui ad cenam Agni vocáti sunt.”",
         latin:
           "Dómine, non sum dignus ut intres sub tectum meum, sed tantum dic verbo, et sanábitur ánima mea.",
+        pron:
+          "Dómine, non sum díñus ut íntres sub téctum méum, sed tántum dic vérbo, et sanábitur ánima méa.",
         espanol:
           "Señor, no soy digno de que entres en mi casa, pero una palabra tuya bastará para sanarme.",
       },
       {
         cue: "Al recibir la comunión: “Corpus Christi.”",
         latin: "Amen.",
+        pron: "Ámen.",
         espanol: "Amén.",
       },
     ],
@@ -473,11 +499,13 @@ const MISA_LATIN = [
       {
         cue: "Bendición final: “…In nómine Patris, et Fílii, et Spíritus Sancti.”",
         latin: "Amen.",
+        pron: "Ámen.",
         espanol: "Amén.",
       },
       {
         cue: "Despedida: “Ite, missa est.”",
         latin: "Deo grátias.",
+        pron: "Déo grátsias.",
         espanol: "Demos gracias a Dios.",
       },
     ],
@@ -863,6 +891,7 @@ function renderMisaLatin() {
       <p class="ficha-contador">${f.seccion} · ${misaLatinIndice + 1}/${total}</p>
       ${f.cue ? `<p class="ficha-cue">${f.cue}</p>` : ""}
       <p class="ficha-latin">${f.latin}</p>
+      ${f.pron ? `<p class="ficha-pron">🔊 ${f.pron}</p>` : ""}
       <p class="ficha-espanol">${f.espanol}</p>
       <div class="ficha-nav">
         <button class="btn-secundario" id="ficha-anterior" ${
