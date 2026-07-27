@@ -337,6 +337,165 @@ const NOTAS = [
   "Si algún grupo desea colaborar otro día con la alimentación, también puede comunicarlo.",
 ];
 
+const MISA_LATIN = [
+  {
+    seccion: "Ritos iniciales",
+    fichas: [
+      {
+        cue: "Sacerdote: “In nómine Patris, et Fílii, et Spíritus Sancti.”",
+        latin: "Amen.",
+        espanol: "Amén.",
+      },
+      {
+        cue: "Sacerdote: “Dóminus vobíscum.”",
+        latin: "Et cum spíritu tuo.",
+        espanol: "Y con tu espíritu.",
+      },
+      {
+        cue: "Acto penitencial (todos)",
+        latin: "Mea culpa, mea culpa, mea máxima culpa.",
+        espanol: "Por mi culpa, por mi culpa, por mi gran culpa.",
+      },
+      {
+        cue: "Kýrie (todos)",
+        latin: "Kýrie, eléison. Christe, eléison. Kýrie, eléison.",
+        espanol: "Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad.",
+      },
+      {
+        cue: "Gloria (todos)",
+        latin:
+          "Glória in excélsis Deo et in terra pax homínibus bonae voluntátis. Laudámus te, benedícimus te, adorámus te, glorificámus te, grátias ágimus tibi propter magnam glóriam tuam, Dómine Deus, Rex cæléstis, Deus Pater omnípotens. Dómine Fili unigénite, Iesu Christe, Dómine Deus, Agnus Dei, Fílius Patris, qui tollis peccáta mundi, miserére nobis; qui tollis peccáta mundi, súscipe deprecatiónem nostram. Qui sedes ad déxteram Patris, miserére nobis. Quóniam tu solus Sanctus, tu solus Dóminus, tu solus Altíssimus, Iesu Christe, cum Sancto Spíritu: in glória Dei Patris. Amen.",
+        espanol:
+          "Gloria a Dios en el cielo, y en la tierra paz a los hombres que ama el Señor. Por tu inmensa gloria te alabamos, te bendecimos, te adoramos, te glorificamos, te damos gracias, Señor Dios, Rey celestial, Dios Padre todopoderoso. Señor, Hijo único, Jesucristo; Señor Dios, Cordero de Dios, Hijo del Padre; tú que quitas el pecado del mundo, ten piedad de nosotros; tú que quitas el pecado del mundo, atiende nuestra súplica; tú que estás sentado a la derecha del Padre, ten piedad de nosotros; porque solo tú eres Santo, solo tú Señor, solo tú Altísimo, Jesucristo, con el Espíritu Santo en la gloria de Dios Padre. Amén.",
+      },
+    ],
+  },
+  {
+    seccion: "Liturgia de la Palabra",
+    fichas: [
+      {
+        cue: "Sacerdote/Diácono: “Léctio sancti Evangélii secúndum…”",
+        latin: "Glória tibi, Dómine.",
+        espanol: "Gloria a ti, Señor.",
+      },
+      {
+        cue: "Lector, tras 1ª/2ª lectura: “Verbum Dómini.”",
+        latin: "Deo grátias.",
+        espanol: "Te alabamos, Señor.",
+      },
+      {
+        cue: "Tras el Evangelio: “Verbum Dómini.”",
+        latin: "Laus tibi, Christe.",
+        espanol: "Gloria a ti, Señor Jesús.",
+      },
+      {
+        cue: "Credo Niceno (todos)",
+        latin:
+          "Credo in unum Deum, Patrem omnipoténtem, factórem cæli et terræ, visibílium ómnium et invisibílium. Et in unum Dóminum Iesum Christum, Fílium Dei unigénitum, et ex Patre natum ante ómnia sæcula. Deum de Deo, lumen de lúmine, Deum verum de Deo vero, génitum, non factum, consubstantiálem Patri: per quem ómnia facta sunt. Qui propter nos hómines et propter nostram salútem descéndit de cælis. Et incarnátus est de Spíritu Sancto ex María Vírgine, et homo factus est. Crucifíxus étiam pro nobis sub Póntio Piláto; passus et sepúltus est, et resurréxit tértia die, secúndum Scriptúras, et ascéndit in cælum, sedet ad déxteram Patris. Et íterum ventúrus est cum glória, iudicáre vivos et mórtuos, cuius regni non erit finis. Et in Spíritum Sanctum, Dóminum et vivificántem: qui ex Patre Filióque procédit. Qui cum Patre et Fílio simul adorátur et conglorificátur: qui locútus est per prophétas. Et unam, sanctam, cathólicam et apostólicam Ecclésiam. Confíteor unum baptísma in remissiónem peccatórum. Et exspécto resurrectiónem mortuórum, et vitam ventúri sæculi. Amen.",
+        espanol:
+          "Creo en un solo Dios, Padre todopoderoso, Creador del cielo y de la tierra, de todo lo visible y lo invisible. Creo en un solo Señor, Jesucristo, Hijo único de Dios, nacido del Padre antes de todos los siglos: Dios de Dios, Luz de Luz, Dios verdadero de Dios verdadero, engendrado, no creado, de la misma naturaleza del Padre, por quien todo fue hecho; que por nosotros, los hombres, y por nuestra salvación bajó del cielo, y por obra del Espíritu Santo se encarnó de María, la Virgen, y se hizo hombre; y por nuestra causa fue crucificado en tiempos de Poncio Pilato: padeció y fue sepultado, y resucitó al tercer día, según las Escrituras, y subió al cielo, y está sentado a la derecha del Padre; y de nuevo vendrá con gloria para juzgar a vivos y muertos, y su reino no tendrá fin. Creo en el Espíritu Santo, Señor y dador de vida, que procede del Padre y del Hijo, que con el Padre y el Hijo recibe una misma adoración y gloria, y que habló por los profetas. Creo en la Iglesia, que es una, santa, católica y apostólica. Confieso que hay un solo bautismo para el perdón de los pecados. Espero la resurrección de los muertos y la vida del mundo futuro. Amén.",
+      },
+    ],
+  },
+  {
+    seccion: "Liturgia Eucarística",
+    fichas: [
+      {
+        cue: "Sacerdote: “Oráte, fratres…”",
+        latin:
+          "Suscípiat Dóminus sacrifícium de mánibus tuis ad laudem et glóriam nóminis sui, ad utilitátem quoque nostram totiúsque Ecclésiæ suæ sanctæ.",
+        espanol:
+          "El Señor reciba de tus manos este sacrificio, para alabanza y gloria de su nombre, para nuestro bien y el de toda su santa Iglesia.",
+      },
+      {
+        cue: "Prefacio: “Sursum corda.”",
+        latin: "Habémus ad Dóminum.",
+        espanol: "Lo tenemos levantado hacia el Señor.",
+      },
+      {
+        cue: "Prefacio: “Grátias agámus Dómino Deo nostro.”",
+        latin: "Dignum et iustum est.",
+        espanol: "Es justo y necesario.",
+      },
+      {
+        cue: "Sanctus (todos)",
+        latin:
+          "Sanctus, Sanctus, Sanctus Dóminus Deus Sábaoth. Pleni sunt cæli et terra glória tua. Hosánna in excélsis. Benedíctus qui venit in nómine Dómini. Hosánna in excélsis.",
+        espanol:
+          "Santo, Santo, Santo es el Señor, Dios del universo. Llenos están el cielo y la tierra de tu gloria. Hosanna en el cielo. Bendito el que viene en nombre del Señor. Hosanna en el cielo.",
+      },
+      {
+        cue: "Sacerdote: “Mystérium fídei.”",
+        latin:
+          "Mortem tuam annuntiámus, Dómine, et tuam resurrectiónem confitémur, donec vénias.",
+        espanol:
+          "Anunciamos tu muerte, proclamamos tu resurrección. ¡Ven, Señor Jesús!",
+      },
+      {
+        cue: "Gran Amén, al final de la Plegaria Eucarística",
+        latin: "Amen.",
+        espanol: "Amén.",
+      },
+    ],
+  },
+  {
+    seccion: "Rito de la Comunión",
+    fichas: [
+      {
+        cue: "Padre Nuestro (todos)",
+        latin:
+          "Pater noster, qui es in cælis: sanctificétur nomen tuum; advéniat regnum tuum; fiat volúntas tua, sicut in cælo, et in terra. Panem nostrum cotidiánum da nobis hódie; et dimítte nobis débita nostra, sicut et nos dimíttimus debitóribus nostris; et ne nos indúcas in tentatiónem; sed líbera nos a malo.",
+        espanol:
+          "Padre nuestro, que estás en el cielo, santificado sea tu Nombre; venga a nosotros tu reino; hágase tu voluntad en la tierra como en el cielo. Danos hoy nuestro pan de cada día; perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden; no nos dejes caer en la tentación, y líbranos del mal.",
+      },
+      {
+        cue: "Sacerdote: “…exspectántes beátam spem et advéntum Salvatóris nostri Iesu Christi.”",
+        latin: "Quia tuum est regnum, et potéstas, et glória in sæcula.",
+        espanol: "Tuyo es el reino, tuyo el poder y la gloria, por siempre, Señor.",
+      },
+      {
+        cue: "Rito de la paz: “Pax Dómini sit semper vobíscum.”",
+        latin: "Et cum spíritu tuo.",
+        espanol: "Y con tu espíritu.",
+      },
+      {
+        cue: "Agnus Dei (todos)",
+        latin:
+          "Agnus Dei, qui tollis peccáta mundi: miserére nobis. Agnus Dei, qui tollis peccáta mundi: miserére nobis. Agnus Dei, qui tollis peccáta mundi: dona nobis pacem.",
+        espanol:
+          "Cordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros. Cordero de Dios, que quitas el pecado del mundo, ten piedad de nosotros. Cordero de Dios, que quitas el pecado del mundo, danos la paz.",
+      },
+      {
+        cue: "Antes de comulgar: “Ecce Agnus Dei… Beáti qui ad cenam Agni vocáti sunt.”",
+        latin:
+          "Dómine, non sum dignus ut intres sub tectum meum, sed tantum dic verbo, et sanábitur ánima mea.",
+        espanol:
+          "Señor, no soy digno de que entres en mi casa, pero una palabra tuya bastará para sanarme.",
+      },
+      {
+        cue: "Al recibir la comunión: “Corpus Christi.”",
+        latin: "Amen.",
+        espanol: "Amén.",
+      },
+    ],
+  },
+  {
+    seccion: "Rito de Conclusión",
+    fichas: [
+      {
+        cue: "Bendición final: “…In nómine Patris, et Fílii, et Spíritus Sancti.”",
+        latin: "Amen.",
+        espanol: "Amén.",
+      },
+      {
+        cue: "Despedida: “Ite, missa est.”",
+        latin: "Deo grátias.",
+        espanol: "Demos gracias a Dios.",
+      },
+    ],
+  },
+];
+
 /* ==========================================================================
    Utilidades
    ========================================================================== */
@@ -698,6 +857,30 @@ function renderEquipo() {
 }
 
 /* ==========================================================================
+   Vista: Misa en latín
+   ========================================================================== */
+
+function renderMisaLatin() {
+  const secciones = MISA_LATIN.map(
+    (s) => `<div class="card">
+        <h3>${s.seccion}</h3>
+        <div class="fichas-grid">
+          ${s.fichas
+            .map(
+              (f) => `<div class="ficha">
+                ${f.cue ? `<p class="ficha-cue">${f.cue}</p>` : ""}
+                <p class="ficha-latin">${f.latin}</p>
+                <p class="ficha-espanol">${f.espanol}</p>
+              </div>`
+            )
+            .join("")}
+        </div>
+      </div>`
+  ).join("");
+  $("#misa-latin-contenido").innerHTML = secciones;
+}
+
+/* ==========================================================================
    Navegación
    ========================================================================== */
 
@@ -725,4 +908,5 @@ renderSelectorSeminaristas();
 renderMiTurno();
 renderCronograma();
 renderEquipo();
+renderMisaLatin();
 mostrarVista("dia");
