@@ -352,21 +352,16 @@ const MISA_LATIN = [
         espanol: "Y con tu espíritu.",
       },
       {
-        cue: "Acto penitencial (todos)",
-        latin: "Mea culpa, mea culpa, mea máxima culpa.",
-        espanol: "Por mi culpa, por mi culpa, por mi gran culpa.",
+        cue: "Yo confieso (todos)",
+        latin:
+          "Confíteor Deo omnipoténti et vobis, fratres, quia peccávi nimis cogitatióne, verbo, ópere et omissióne: mea culpa, mea culpa, mea máxima culpa. Ideo precor beátam Maríam semper Vírginem, omnes Angelos et Sanctos, et vos, fratres, oráre pro me ad Dóminum Deum nostrum.",
+        espanol:
+          "Yo confieso ante Dios todopoderoso y ante vosotros, hermanos, que he pecado mucho de pensamiento, palabra, obra y omisión. Por mi culpa, por mi culpa, por mi gran culpa. Por eso ruego a santa María, siempre Virgen, a los ángeles, a los santos y a vosotros, hermanos, que intercedáis por mí ante Dios, nuestro Señor.",
       },
       {
         cue: "Kýrie (todos)",
         latin: "Kýrie, eléison. Christe, eléison. Kýrie, eléison.",
         espanol: "Señor, ten piedad. Cristo, ten piedad. Señor, ten piedad.",
-      },
-      {
-        cue: "Gloria (todos)",
-        latin:
-          "Glória in excélsis Deo et in terra pax homínibus bonae voluntátis. Laudámus te, benedícimus te, adorámus te, glorificámus te, grátias ágimus tibi propter magnam glóriam tuam, Dómine Deus, Rex cæléstis, Deus Pater omnípotens. Dómine Fili unigénite, Iesu Christe, Dómine Deus, Agnus Dei, Fílius Patris, qui tollis peccáta mundi, miserére nobis; qui tollis peccáta mundi, súscipe deprecatiónem nostram. Qui sedes ad déxteram Patris, miserére nobis. Quóniam tu solus Sanctus, tu solus Dóminus, tu solus Altíssimus, Iesu Christe, cum Sancto Spíritu: in glória Dei Patris. Amen.",
-        espanol:
-          "Gloria a Dios en el cielo, y en la tierra paz a los hombres que ama el Señor. Por tu inmensa gloria te alabamos, te bendecimos, te adoramos, te glorificamos, te damos gracias, Señor Dios, Rey celestial, Dios Padre todopoderoso. Señor, Hijo único, Jesucristo; Señor Dios, Cordero de Dios, Hijo del Padre; tú que quitas el pecado del mundo, ten piedad de nosotros; tú que quitas el pecado del mundo, atiende nuestra súplica; tú que estás sentado a la derecha del Padre, ten piedad de nosotros; porque solo tú eres Santo, solo tú Señor, solo tú Altísimo, Jesucristo, con el Espíritu Santo en la gloria de Dios Padre. Amén.",
       },
     ],
   },
@@ -387,13 +382,6 @@ const MISA_LATIN = [
         cue: "Tras el Evangelio: “Verbum Dómini.”",
         latin: "Laus tibi, Christe.",
         espanol: "Gloria a ti, Señor Jesús.",
-      },
-      {
-        cue: "Credo Niceno (todos)",
-        latin:
-          "Credo in unum Deum, Patrem omnipoténtem, factórem cæli et terræ, visibílium ómnium et invisibílium. Et in unum Dóminum Iesum Christum, Fílium Dei unigénitum, et ex Patre natum ante ómnia sæcula. Deum de Deo, lumen de lúmine, Deum verum de Deo vero, génitum, non factum, consubstantiálem Patri: per quem ómnia facta sunt. Qui propter nos hómines et propter nostram salútem descéndit de cælis. Et incarnátus est de Spíritu Sancto ex María Vírgine, et homo factus est. Crucifíxus étiam pro nobis sub Póntio Piláto; passus et sepúltus est, et resurréxit tértia die, secúndum Scriptúras, et ascéndit in cælum, sedet ad déxteram Patris. Et íterum ventúrus est cum glória, iudicáre vivos et mórtuos, cuius regni non erit finis. Et in Spíritum Sanctum, Dóminum et vivificántem: qui ex Patre Filióque procédit. Qui cum Patre et Fílio simul adorátur et conglorificátur: qui locútus est per prophétas. Et unam, sanctam, cathólicam et apostólicam Ecclésiam. Confíteor unum baptísma in remissiónem peccatórum. Et exspécto resurrectiónem mortuórum, et vitam ventúri sæculi. Amen.",
-        espanol:
-          "Creo en un solo Dios, Padre todopoderoso, Creador del cielo y de la tierra, de todo lo visible y lo invisible. Creo en un solo Señor, Jesucristo, Hijo único de Dios, nacido del Padre antes de todos los siglos: Dios de Dios, Luz de Luz, Dios verdadero de Dios verdadero, engendrado, no creado, de la misma naturaleza del Padre, por quien todo fue hecho; que por nosotros, los hombres, y por nuestra salvación bajó del cielo, y por obra del Espíritu Santo se encarnó de María, la Virgen, y se hizo hombre; y por nuestra causa fue crucificado en tiempos de Poncio Pilato: padeció y fue sepultado, y resucitó al tercer día, según las Escrituras, y subió al cielo, y está sentado a la derecha del Padre; y de nuevo vendrá con gloria para juzgar a vivos y muertos, y su reino no tendrá fin. Creo en el Espíritu Santo, Señor y dador de vida, que procede del Padre y del Hijo, que con el Padre y el Hijo recibe una misma adoración y gloria, y que habló por los profetas. Creo en la Iglesia, que es una, santa, católica y apostólica. Confieso que hay un solo bautismo para el perdón de los pecados. Espero la resurrección de los muertos y la vida del mundo futuro. Amén.",
       },
     ],
   },
@@ -860,24 +848,41 @@ function renderEquipo() {
    Vista: Misa en latín
    ========================================================================== */
 
+const MISA_LATIN_FICHAS = MISA_LATIN.flatMap((s) =>
+  s.fichas.map((f) => ({ ...f, seccion: s.seccion }))
+);
+
+let misaLatinIndice = 0;
+
 function renderMisaLatin() {
-  const secciones = MISA_LATIN.map(
-    (s) => `<div class="card">
-        <h3>${s.seccion}</h3>
-        <div class="fichas-grid">
-          ${s.fichas
-            .map(
-              (f) => `<div class="ficha">
-                ${f.cue ? `<p class="ficha-cue">${f.cue}</p>` : ""}
-                <p class="ficha-latin">${f.latin}</p>
-                <p class="ficha-espanol">${f.espanol}</p>
-              </div>`
-            )
-            .join("")}
-        </div>
-      </div>`
-  ).join("");
-  $("#misa-latin-contenido").innerHTML = secciones;
+  const total = MISA_LATIN_FICHAS.length;
+  const f = MISA_LATIN_FICHAS[misaLatinIndice];
+
+  $("#misa-latin-contenido").innerHTML = `
+    <div class="card ficha-carrusel">
+      <p class="ficha-contador">${f.seccion} · ${misaLatinIndice + 1}/${total}</p>
+      ${f.cue ? `<p class="ficha-cue">${f.cue}</p>` : ""}
+      <p class="ficha-latin">${f.latin}</p>
+      <p class="ficha-espanol">${f.espanol}</p>
+      <div class="ficha-nav">
+        <button class="btn-secundario" id="ficha-anterior" ${
+          misaLatinIndice === 0 ? "disabled" : ""
+        }>◀ Anterior</button>
+        <button class="btn-principal" id="ficha-siguiente" ${
+          misaLatinIndice === total - 1 ? "disabled" : ""
+        }>Siguiente ▶</button>
+      </div>
+    </div>
+  `;
+
+  $("#ficha-anterior").addEventListener("click", () => {
+    misaLatinIndice = Math.max(0, misaLatinIndice - 1);
+    renderMisaLatin();
+  });
+  $("#ficha-siguiente").addEventListener("click", () => {
+    misaLatinIndice = Math.min(total - 1, misaLatinIndice + 1);
+    renderMisaLatin();
+  });
 }
 
 /* ==========================================================================
