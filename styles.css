@@ -392,42 +392,51 @@ main {
 
 /* ---------- Misa en latín ---------- */
 
-.fichas-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+.ficha-carrusel {
+  background: var(--crema);
+  border-color: var(--dorado);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
 }
 
-.ficha {
-  background: var(--crema);
-  border: 1px solid var(--linea);
-  border-radius: 12px;
-  padding: 12px 14px;
+.ficha-contador {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--marron);
+  margin-bottom: 10px;
 }
 
 .ficha-cue {
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   color: var(--tinta-suave);
   font-style: italic;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .ficha-latin {
   font-weight: 700;
   color: var(--marron-oscuro);
-  font-size: 1rem;
-  margin-bottom: 4px;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
 }
 
 .ficha-espanol {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--tinta);
+  flex: 1;
 }
 
-@media (min-width: 560px) {
-  .fichas-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.ficha-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ficha-nav button {
+  flex: 1;
 }
 
 /* ---------- Tablas ---------- */
