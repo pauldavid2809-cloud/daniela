@@ -278,7 +278,7 @@ const DIAS = [
     ],
     responsables: ["Seminaristas"],
     alimentacion: [],
-    cocina: ["Luis Polanco", "Jorge Reyes"],
+    cocina: ["Luis Polanco", "Alejandro Rubio"],
     liturgia: ["Paul Urdaneta", "Alfenyer Fernández"],
     lector: "Rances Mercado",
     mesa: ["Mario Soto", "Rixio García"],
@@ -325,10 +325,10 @@ const DIAS = [
     actividades: [{ turno: "Día", desc: "Despedida de los seminaristas" }],
     responsables: ["Templo parroquial"],
     alimentacion: [],
-    cocina: ["Mario Soto", "Alejandro Rubio"],
+    cocina: ["Mario Soto", "Dany Araujo"],
     liturgia: ["Rixio García", "Luis Polanco"],
     lector: "Armando Celis",
-    mesa: ["Dany Araujo", "Jorge Reyes"],
+    mesa: ["Alejandro Rubio", "Jorge Reyes"],
   },
 ];
 
