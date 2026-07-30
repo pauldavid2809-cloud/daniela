@@ -4,73 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#5b2d0e" />
-  <title>Misiones Julio 2026 · El Buen Pastor</title>
+  <title>Censo de la Misión · El Buen Pastor</title>
   <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <header class="cabecera">
     <div class="cabecera-texto">
       <p class="sobretitulo">Arquidiócesis de Maracaibo · Parroquia "El Buen Pastor"</p>
-      <h1>Misiones · 17 al 31 de julio</h1>
-      <p class="subtitulo">Cronograma y turnos de los seminaristas</p>
+      <h1>Censo de la Misión</h1>
+      <p class="subtitulo">Casas y personas visitadas · 17 al 31 de julio</p>
     </div>
   </header>
 
   <nav class="tabs" aria-label="Secciones">
-    <button class="tab activo" data-vista="dia">📅<span>Por día</span></button>
-    <button class="tab" data-vista="mi">🙋<span>Mi turno</span></button>
-    <button class="tab" data-vista="cronograma">🗓️<span>Cronograma</span></button>
-    <button class="tab" data-vista="equipo">👥<span>Equipo</span></button>
-    <button class="tab" data-vista="censo">📋<span>Censo</span></button>
+    <button class="tab activo" data-vista="censo">📋<span>Censo</span></button>
     <button class="tab" data-vista="stats">📊<span>Stats</span></button>
-    <button class="tab" data-vista="misa-latin">🕯️<span>Misa en latín</span></button>
   </nav>
 
   <main>
-    <!-- Vista: Por día -->
-    <section id="vista-dia" class="vista visible">
-      <div id="selector-dias" class="selector-dias" aria-label="Elegir día"></div>
-      <div id="vista-dia-detalle"></div>
-    </section>
-
-    <!-- Vista: Mi turno -->
-    <section id="vista-mi" class="vista">
-      <div id="selector-seminaristas" class="selector-seminaristas" aria-label="Elegir seminarista"></div>
-      <div id="vista-mi-detalle"></div>
-    </section>
-
-    <!-- Vista: Cronograma completo -->
-    <section id="vista-cronograma" class="vista">
-      <div class="card">
-        <h3>🗓️ Cronograma de las Misiones</h3>
-        <div class="tabla-scroll">
-          <table id="tabla-cronograma">
-            <thead>
-              <tr>
-                <th>Día</th>
-                <th>Actividad</th>
-                <th>Responsables</th>
-                <th>Alimentación</th>
-                <th>Cocina</th>
-                <th>Liturgia</th>
-                <th>Lector</th>
-                <th>Platos/Mesa</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-      <div id="notas-cronograma" class="card"></div>
-    </section>
-
-    <!-- Vista: Equipo -->
-    <section id="vista-equipo" class="vista">
-      <div id="vista-equipo-detalle"></div>
-    </section>
-
     <!-- Vista: Censo de la misión -->
-    <section id="vista-censo" class="vista">
+    <section id="vista-censo" class="vista visible">
       <div id="censo-aviso-offline"></div>
       <div id="censo-guia"></div>
       <div id="censo-form"></div>
@@ -82,16 +35,10 @@
     <section id="vista-stats" class="vista">
       <div id="stats-contenido"></div>
     </section>
-
-    <!-- Vista: Misa en latín -->
-    <section id="vista-misa-latin" class="vista">
-      <div id="misa-latin-contenido"></div>
-    </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js?v=2"></script>
-  <script src="app.js?v=8"></script>
-  <script src="censo.js?v=4"></script>
+  <script src="censo.js?v=5"></script>
 </body>
 </html>

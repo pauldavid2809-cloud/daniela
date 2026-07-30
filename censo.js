@@ -1039,9 +1039,21 @@ document.querySelector("#vista-stats").addEventListener("change", (ev) => {
   }
 });
 
-/* Recargar datos al entrar a las pestañas nuevas (el toggle visual lo hace app.js) */
+/* ---------- Navegación entre pestañas ---------- */
+
+function mostrarVista(id) {
+  document.querySelectorAll(".vista").forEach((v) => {
+    v.classList.toggle("visible", v.id === `vista-${id}`);
+  });
+  document.querySelectorAll(".tab").forEach((t) => {
+    t.classList.toggle("activo", t.dataset.vista === id);
+  });
+  window.scrollTo({ top: 0 });
+}
+
 document.querySelectorAll(".tab").forEach((tab) => {
   tab.addEventListener("click", () => {
+    mostrarVista(tab.dataset.vista);
     if (tab.dataset.vista === "censo") refrescarCenso();
     if (tab.dataset.vista === "stats") refrescarStats();
   });
@@ -1051,3 +1063,4 @@ document.querySelectorAll(".tab").forEach((tab) => {
 window.addEventListener("online", sincronizarPendientes);
 if (sb) sincronizarPendientes();
 renderAvisoOffline();
+refrescarCenso();
