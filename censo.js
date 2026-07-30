@@ -36,6 +36,7 @@ const CATEGORIAS = [
     etiqueta: "Enfermo",
     emoji: "🤒",
     pregunta: "¿Hay alguna persona enferma o encamada en la casa?",
+    mensaje: "la visita del sacerdote para llevarle la comunión",
   },
   {
     slug: "primera_comunion",
@@ -43,12 +44,14 @@ const CATEGORIAS = [
     emoji: "🍞",
     pregunta:
       "¿Hay niños o jóvenes que no hayan hecho la Primera Comunión y quieran prepararse?",
+    mensaje: "la preparación para la Primera Comunión",
   },
   {
     slug: "confirmacion",
     etiqueta: "Confirmación",
     emoji: "🕊️",
     pregunta: "¿Hay jóvenes o adultos que no hayan recibido la Confirmación?",
+    mensaje: "la preparación para la Confirmación",
   },
   {
     slug: "vulnerable",
@@ -56,12 +59,14 @@ const CATEGORIAS = [
     emoji: "🤝",
     pregunta:
       "¿Vive aquí algún adulto mayor solo, persona con discapacidad o en situación de necesidad?",
+    mensaje: "cómo la parroquia puede acompañarle y en qué podemos ayudar",
   },
   {
     slug: "bautizo",
     etiqueta: "Bautizo pendiente",
     emoji: "💧",
     pregunta: "¿Hay niños o adultos sin bautizar que deseen recibir el bautismo?",
+    mensaje: "la preparación y la fecha para el Bautismo",
   },
   {
     slug: "matrimonio",
@@ -69,6 +74,7 @@ const CATEGORIAS = [
     emoji: "💍",
     pregunta:
       "¿Hay parejas que deseen casarse por la Iglesia o regularizar su unión?",
+    mensaje: "regularizar su matrimonio por la Iglesia",
   },
   {
     slug: "uncion",
@@ -76,6 +82,7 @@ const CATEGORIAS = [
     emoji: "⛪",
     pregunta:
       "¿Algún enfermo desea que le lleven la comunión o recibir la unción de los enfermos en casa?",
+    mensaje: "que un sacerdote le lleve la comunión o la unción de los enfermos",
   },
 ];
 
@@ -115,8 +122,26 @@ function formatoLocal(tel) {
   return local.length === 11 ? `${local.slice(0, 4)}-${local.slice(4)}` : local;
 }
 
-function linkWhatsApp(tel) {
-  return `https://wa.me/${tel}?text=${encodeURIComponent(SALUDO_WA)}`;
+function linkWhatsApp(tel, mensaje) {
+  return `https://wa.me/${tel}?text=${encodeURIComponent(mensaje)}`;
+}
+
+/* Arma un saludo de WhatsApp según las categorías de la persona
+   (enfermo, primera comunión, etc.), para no mandar un mensaje genérico */
+function mensajeWhatsApp(persona) {
+  const nombre = persona.nombre.split(" ")[0];
+  const motivos = persona.categorias
+    .map((slug) => catInfo(slug).mensaje)
+    .filter(Boolean);
+
+  if (!motivos.length) return SALUDO_WA;
+
+  const listaMotivos =
+    motivos.length === 1
+      ? motivos[0]
+      : `${motivos.slice(0, -1).join(", ")} y ${motivos[motivos.length - 1]}`;
+
+  return `Saludos, le escribimos de la Parroquia El Buen Pastor por la visita de las misiones 🙏. Con respecto a ${nombre}, quisiéramos conversar sobre ${listaMotivos}. ¿Podemos coordinar con usted?`;
 }
 
 function fechaCorta(iso) {
@@ -676,7 +701,7 @@ function cardPersona(p, casa) {
       <div class="persona-censo-pie">
         ${
           telWA
-            ? `<a class="btn-whatsapp" href="${linkWhatsApp(telWA)}" target="_blank" rel="noopener">💬 WhatsApp</a>`
+            ? `<a class="btn-whatsapp" href="${linkWhatsApp(telWA, mensajeWhatsApp(p))}" target="_blank" rel="noopener">💬 WhatsApp</a>`
             : ""
         }
         <button class="btn-mini" data-accion="editar-persona" data-id="${p.id}">✏️</button>
