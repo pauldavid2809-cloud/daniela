@@ -13,7 +13,7 @@ create table sectores (
 
 insert into sectores (nombre) values
   ('La Chamarreta'), ('Altos II'), ('Altos III'),
-  ('Sol Amado'), ('Las Trinitarias'), ('Cuatricentenario');
+  ('Sol Amado'), ('Las Trinitarias'), ('Cuatricentenario'), ('Raúl Leoni');
 
 -- Casa/familia: agrupa los casos de un mismo hogar
 create table casas (
