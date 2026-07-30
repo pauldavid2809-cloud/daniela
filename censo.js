@@ -24,6 +24,10 @@ const SALUDO_WA =
 
 const LS_PENDIENTES = "censo_pendientes";
 
+/* La misión terminó: ya no se registran casas nuevas, solo se sigue
+   actualizando el seguimiento de lo ya censado */
+const MISION_FINALIZADA = true;
+
 /* ---------- Catálogos ---------- */
 
 const CATEGORIAS = [
@@ -298,6 +302,18 @@ function renderAvisoOffline() {
     </div>`;
 }
 
+function renderAvisoMision() {
+  const cont = document.querySelector("#censo-aviso-mision");
+  if (!cont) return;
+  cont.innerHTML = MISION_FINALIZADA
+    ? `
+    <div class="aviso-cierre">
+      🏁 La misión ha finalizado. El censo queda abierto para consultar y actualizar el
+      seguimiento de los casos ya registrados; ya no se registran casas nuevas.
+    </div>`
+    : "";
+}
+
 /* ---------- Guía de preguntas para la visita ---------- */
 
 function renderGuiaCenso() {
@@ -426,7 +442,9 @@ function renderFormulario() {
   const cont = document.querySelector("#censo-form");
 
   if (!form.modo) {
-    cont.innerHTML = `
+    cont.innerHTML = MISION_FINALIZADA
+      ? ""
+      : `
       <button class="btn-principal btn-registrar" data-accion="abrir-form">
         ➕ Registrar casa / visita
       </button>`;
@@ -1063,4 +1081,5 @@ document.querySelectorAll(".tab").forEach((tab) => {
 window.addEventListener("online", sincronizarPendientes);
 if (sb) sincronizarPendientes();
 renderAvisoOffline();
+renderAvisoMision();
 refrescarCenso();
