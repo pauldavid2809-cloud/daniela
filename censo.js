@@ -36,6 +36,7 @@ const CATEGORIAS = [
     etiqueta: "Enfermo",
     emoji: "🤒",
     pregunta: "¿Hay alguna persona enferma o encamada en la casa?",
+    mensaje: "la visita del sacerdote para llevarle la comunión",
   },
   {
     slug: "primera_comunion",
@@ -43,12 +44,14 @@ const CATEGORIAS = [
     emoji: "🍞",
     pregunta:
       "¿Hay niños o jóvenes que no hayan hecho la Primera Comunión y quieran prepararse?",
+    mensaje: "la preparación para la Primera Comunión",
   },
   {
     slug: "confirmacion",
     etiqueta: "Confirmación",
     emoji: "🕊️",
     pregunta: "¿Hay jóvenes o adultos que no hayan recibido la Confirmación?",
+    mensaje: "la preparación para la Confirmación",
   },
   {
     slug: "vulnerable",
@@ -56,12 +59,14 @@ const CATEGORIAS = [
     emoji: "🤝",
     pregunta:
       "¿Vive aquí algún adulto mayor solo, persona con discapacidad o en situación de necesidad?",
+    mensaje: "cómo la parroquia puede acompañarle y en qué podemos ayudar",
   },
   {
     slug: "bautizo",
     etiqueta: "Bautizo pendiente",
     emoji: "💧",
     pregunta: "¿Hay niños o adultos sin bautizar que deseen recibir el bautismo?",
+    mensaje: "la preparación y la fecha para el Bautismo",
   },
   {
     slug: "matrimonio",
@@ -69,6 +74,7 @@ const CATEGORIAS = [
     emoji: "💍",
     pregunta:
       "¿Hay parejas que deseen casarse por la Iglesia o regularizar su unión?",
+    mensaje: "regularizar su matrimonio por la Iglesia",
   },
   {
     slug: "uncion",
@@ -76,6 +82,7 @@ const CATEGORIAS = [
     emoji: "⛪",
     pregunta:
       "¿Algún enfermo desea que le lleven la comunión o recibir la unción de los enfermos en casa?",
+    mensaje: "que un sacerdote le lleve la comunión o la unción de los enfermos",
   },
 ];
 
@@ -115,8 +122,26 @@ function formatoLocal(tel) {
   return local.length === 11 ? `${local.slice(0, 4)}-${local.slice(4)}` : local;
 }
 
-function linkWhatsApp(tel) {
-  return `https://wa.me/${tel}?text=${encodeURIComponent(SALUDO_WA)}`;
+function linkWhatsApp(tel, mensaje) {
+  return `https://wa.me/${tel}?text=${encodeURIComponent(mensaje)}`;
+}
+
+/* Arma un saludo de WhatsApp según las categorías de la persona
+   (enfermo, primera comunión, etc.), para no mandar un mensaje genérico */
+function mensajeWhatsApp(persona) {
+  const nombre = persona.nombre.split(" ")[0];
+  const motivos = persona.categorias
+    .map((slug) => catInfo(slug).mensaje)
+    .filter(Boolean);
+
+  if (!motivos.length) return SALUDO_WA;
+
+  const listaMotivos =
+    motivos.length === 1
+      ? motivos[0]
+      : `${motivos.slice(0, -1).join(", ")} y ${motivos[motivos.length - 1]}`;
+
+  return `Saludos, le escribimos de la Parroquia El Buen Pastor por la visita de las misiones 🙏. Con respecto a ${nombre}, quisiéramos conversar sobre ${listaMotivos}. ¿Podemos coordinar con usted?`;
 }
 
 function fechaCorta(iso) {
@@ -231,6 +256,62 @@ async function refrescarStats() {
       e.message
     )}</span></div>`;
   }
+}
+
+/* ---------- Exportar a Excel (una hoja por sector) ---------- */
+
+function exportarExcel() {
+  if (typeof XLSX === "undefined") {
+    alert(
+      "No se pudo cargar el generador de Excel. Revisa tu conexión a internet e inténtalo de nuevo."
+    );
+    return;
+  }
+  if (!casasCenso.length) {
+    alert("Todavía no hay casas registradas en el censo para exportar.");
+    return;
+  }
+
+  const libro = XLSX.utils.book_new();
+  const sectoresOrdenados = [...sectoresCenso].sort((a, b) =>
+    a.nombre.localeCompare(b.nombre)
+  );
+
+  sectoresOrdenados.forEach((sector) => {
+    const casasSector = casasCenso.filter((c) => c.sector_id === sector.id);
+    const filas = [];
+    casasSector.forEach((casa) => {
+      const base = {
+        Familia: casa.familia || "",
+        Dirección: casa.direccion,
+        Teléfono: formatoLocal(casa.telefono),
+        "Notas de la casa": casa.notas || "",
+      };
+      if (!casa.personas.length) {
+        filas.push({ ...base, Persona: "", Edad: "", Categorías: "", Estado: "", "Notas de la persona": "", "Fecha de registro": "" });
+        return;
+      }
+      casa.personas.forEach((p) => {
+        filas.push({
+          ...base,
+          Persona: p.nombre,
+          Edad: p.edad ?? "",
+          Categorías: p.categorias.map((c) => catInfo(c).etiqueta).join(", "),
+          Estado: (ESTADOS[p.estado] || ESTADOS.pendiente).etiqueta,
+          "Notas de la persona": p.notas || "",
+          "Fecha de registro": fechaCorta(p.creado_en),
+        });
+      });
+    });
+    if (!filas.length) filas.push({ Familia: "(sin casas registradas en este sector)" });
+
+    const hoja = XLSX.utils.json_to_sheet(filas);
+    const nombreHoja = sector.nombre.replace(/[:\\/?*[\]]/g, "").slice(0, 31) || `Sector ${sector.id}`;
+    XLSX.utils.book_append_sheet(libro, hoja, nombreHoja);
+  });
+
+  const fecha = new Date().toISOString().slice(0, 10);
+  XLSX.writeFile(libro, `censo-mision-${fecha}.xlsx`);
 }
 
 /* ---------- Cola offline (solo registros nuevos) ---------- */
@@ -443,7 +524,10 @@ function renderFormulario() {
 
   if (!form.modo) {
     cont.innerHTML = MISION_FINALIZADA
-      ? ""
+      ? `
+      <button class="btn-principal btn-registrar" data-accion="exportar-excel">
+        📊 Exportar Excel por sector
+      </button>`
       : `
       <button class="btn-principal btn-registrar" data-accion="abrir-form">
         ➕ Registrar casa / visita
@@ -676,7 +760,7 @@ function cardPersona(p, casa) {
       <div class="persona-censo-pie">
         ${
           telWA
-            ? `<a class="btn-whatsapp" href="${linkWhatsApp(telWA)}" target="_blank" rel="noopener">💬 WhatsApp</a>`
+            ? `<a class="btn-whatsapp" href="${linkWhatsApp(telWA, mensajeWhatsApp(p))}" target="_blank" rel="noopener">💬 WhatsApp</a>`
             : ""
         }
         <button class="btn-mini" data-accion="editar-persona" data-id="${p.id}">✏️</button>
@@ -981,7 +1065,9 @@ document.querySelector("#vista-censo").addEventListener("click", (ev) => {
   if (!el) return;
   const accion = el.dataset.accion;
 
-  if (accion === "abrir-form") {
+  if (accion === "exportar-excel") {
+    exportarExcel();
+  } else if (accion === "abrir-form") {
     form = { modo: "nueva-casa" };
     renderFormulario();
   } else if (accion === "cerrar-form") {
