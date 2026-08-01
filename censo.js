@@ -258,6 +258,62 @@ async function refrescarStats() {
   }
 }
 
+/* ---------- Exportar a Excel (una hoja por sector) ---------- */
+
+function exportarExcel() {
+  if (typeof XLSX === "undefined") {
+    alert(
+      "No se pudo cargar el generador de Excel. Revisa tu conexión a internet e inténtalo de nuevo."
+    );
+    return;
+  }
+  if (!casasCenso.length) {
+    alert("Todavía no hay casas registradas en el censo para exportar.");
+    return;
+  }
+
+  const libro = XLSX.utils.book_new();
+  const sectoresOrdenados = [...sectoresCenso].sort((a, b) =>
+    a.nombre.localeCompare(b.nombre)
+  );
+
+  sectoresOrdenados.forEach((sector) => {
+    const casasSector = casasCenso.filter((c) => c.sector_id === sector.id);
+    const filas = [];
+    casasSector.forEach((casa) => {
+      const base = {
+        Familia: casa.familia || "",
+        Dirección: casa.direccion,
+        Teléfono: formatoLocal(casa.telefono),
+        "Notas de la casa": casa.notas || "",
+      };
+      if (!casa.personas.length) {
+        filas.push({ ...base, Persona: "", Edad: "", Categorías: "", Estado: "", "Notas de la persona": "", "Fecha de registro": "" });
+        return;
+      }
+      casa.personas.forEach((p) => {
+        filas.push({
+          ...base,
+          Persona: p.nombre,
+          Edad: p.edad ?? "",
+          Categorías: p.categorias.map((c) => catInfo(c).etiqueta).join(", "),
+          Estado: (ESTADOS[p.estado] || ESTADOS.pendiente).etiqueta,
+          "Notas de la persona": p.notas || "",
+          "Fecha de registro": fechaCorta(p.creado_en),
+        });
+      });
+    });
+    if (!filas.length) filas.push({ Familia: "(sin casas registradas en este sector)" });
+
+    const hoja = XLSX.utils.json_to_sheet(filas);
+    const nombreHoja = sector.nombre.replace(/[:\\/?*[\]]/g, "").slice(0, 31) || `Sector ${sector.id}`;
+    XLSX.utils.book_append_sheet(libro, hoja, nombreHoja);
+  });
+
+  const fecha = new Date().toISOString().slice(0, 10);
+  XLSX.writeFile(libro, `censo-mision-${fecha}.xlsx`);
+}
+
 /* ---------- Cola offline (solo registros nuevos) ---------- */
 
 function pendientes() {
@@ -468,7 +524,10 @@ function renderFormulario() {
 
   if (!form.modo) {
     cont.innerHTML = MISION_FINALIZADA
-      ? ""
+      ? `
+      <button class="btn-principal btn-registrar" data-accion="exportar-excel">
+        📊 Exportar Excel por sector
+      </button>`
       : `
       <button class="btn-principal btn-registrar" data-accion="abrir-form">
         ➕ Registrar casa / visita
@@ -1006,7 +1065,9 @@ document.querySelector("#vista-censo").addEventListener("click", (ev) => {
   if (!el) return;
   const accion = el.dataset.accion;
 
-  if (accion === "abrir-form") {
+  if (accion === "exportar-excel") {
+    exportarExcel();
+  } else if (accion === "abrir-form") {
     form = { modo: "nueva-casa" };
     renderFormulario();
   } else if (accion === "cerrar-form") {
